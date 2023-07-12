@@ -1,0 +1,127 @@
+import datetime
+pisos = 10
+departamentos_por_pisos = 5
+departamentos_precio_v = [3800, 3000, 2800, 3500]
+compradores = []
+departamentos_vendidos =[]
+
+def mostrar_menu():
+    
+   print("\n---- Menú ----\n")
+   
+   print("1. Ingresar a departamentos")
+   
+   print("2. Mostrar departamentos disponibles")
+   
+   print("3. ver listado de compradores")
+   
+   print("4. mostrar ganancias totales")
+   
+   print("5. salir")
+   
+   opcion = input("Seleccione una opción: ")
+
+   return opcion
+
+def comprar_departamentos():
+    
+ piso = int(input("Ingrese el numero de piso (1 al {}): ".format(pisos)))
+ tipo_departamento = input("Ingrese el tipo de departamento (A, B, C, D): ")
+ departamentos = tipo_departamento + str(piso)
+
+ if departamentos in departamentos_precio_v:
+     print("El departamento seleccionado no esta disponible")
+     
+ else:
+    
+    print("Departamento disponible. Opciones: ")
+    
+    print("1. Comprar ")
+    
+    opcion = int(input("Seleccione una opcion: "))
+    run = input("Ingrese el Run de la persona: ")
+    
+    if opcion == 1:
+        
+        departamentos_precio_v.append(departamentos)
+        compradores.append(run) 
+        
+        print("Comprar realizada correctamente ")
+        
+def mostrar_departamentos_disponibles():
+    
+    print("\n----- departamentos disponibles -----")
+    
+    print("Departamentos vendidos: ", departamentos_vendidos)
+    
+    print("Departamentos disponibles: ")
+    
+    for piso in range(1, pisos+1):
+        for tipo_departamentos in ["A","B","C","D"]:
+            
+            departamentos = tipo_departamentos + str(piso)
+            
+            if departamentos not in departamentos_vendidos and departamentos:
+            
+               print(departamentos)     
+ 
+def mostrar_listado_compradores():
+    
+    print("\n---- Listado de Compradores----\n")
+    
+    compradores_ordenados = sorted(compradores)
+    
+    for comprador in compradores_ordenados:
+        
+        print(comprador)
+        
+def mostrar_ganancias_totales():
+    
+    print("\n----- Ganancias totales ----\n")
+    
+    ganancias_vendidos = sum([departamentos_precio_v[pisos.index(depto[1])] for depto in departamentos_vendidos])
+    
+    ganacias_total = ganancias_vendidos
+    
+    print("Ganancias por ventas: ", ganancias_vendidos)
+    
+    
+def ejecucion_practica():
+    print("¡Bienvenido a Mi casa Inmobiliaria!")
+    tiempo_inicio = datetime.datetime.now()
+    
+    while True:
+        
+        opcion = mostrar_menu()
+        
+        if opcion == "1":
+            
+         comprar_departamentos()
+            
+        elif opcion == "2":
+            
+            mostrar_departamentos_disponibles()
+            
+        elif opcion == "3":
+            
+            mostrar_listado_compradores()
+            
+        elif opcion == "4":
+            
+            mostrar_ganancias_totales
+            
+        elif opcion =="5":
+            
+            tiempo_fin = datetime.datetime.now()
+            duracion = tiempo_fin - tiempo_inicio
+            print("¡Gracias por utilizar Mi Casa Inmobiliaria!")
+            print("Duracioon de la ejecucion:", duracion)
+            
+         
+            break
+        
+        else:
+            
+            print("Opcion invalida. Por favor seleccione una opcion valida.")
+            
+ejecucion_practica()
